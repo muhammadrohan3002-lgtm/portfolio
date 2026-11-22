@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
     // Check if an email dispatch service is configured via environment variables
     const resendApiKey = process.env.RESEND_API_KEY;
-    const destinationEmail = process.env.CONTACT_EMAIL || "rohan.cse.dev@gmail.com";
+    const destinationEmail = process.env.CONTACT_EMAIL || "muhammadrohan3002@gmail.com";
 
     // Server-side audit log for contact inquiry
     const timestamp = new Date().toISOString();

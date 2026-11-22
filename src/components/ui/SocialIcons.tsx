@@ -38,3 +38,17 @@ export function LinkedinIcon({ className = "w-4 h-4" }: { className?: string }) 
     </svg>
   );
 }
+
+export function VercelIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M24 22.525H0l12-21.05 12 21.05z" />
+    </svg>
+  );
+}

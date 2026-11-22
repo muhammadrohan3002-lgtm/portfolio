@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { X, Printer, Download, Mail, GraduationCap, Code2, FolderGit2 } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
+import { GithubIcon, LinkedinIcon, VercelIcon } from "@/components/ui/SocialIcons";
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -119,7 +119,16 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 className="flex items-center gap-1.5 hover:text-violet-500 transition-colors"
               >
                 <GithubIcon className="w-3.5 h-3.5 text-violet-500" />
-                GitHub Portfolio
+                GitHub
+              </a>
+              <a
+                href={personal.vercel}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-violet-500 transition-colors"
+              >
+                <VercelIcon className="w-3.5 h-3.5 text-violet-500" />
+                Vercel
               </a>
             </div>
           </div>

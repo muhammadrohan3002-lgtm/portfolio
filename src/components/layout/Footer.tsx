@@ -3,7 +3,7 @@
 import React, { useSyncExternalStore } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { ArrowUp, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
+import { GithubIcon, LinkedinIcon, VercelIcon } from "@/components/ui/SocialIcons";
 
 const emptySubscribe = () => () => {};
 
@@ -54,6 +54,15 @@ export function Footer() {
                 className="p-2.5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-violet-600 dark:hover:text-violet-400 hover:border-violet-500/30 transition-colors shadow-sm"
               >
                 <GithubIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={personal.vercel}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Rohan's Vercel profile"
+                className="p-2.5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-white hover:border-violet-500/30 transition-colors shadow-sm"
+              >
+                <VercelIcon className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${personal.email}`}

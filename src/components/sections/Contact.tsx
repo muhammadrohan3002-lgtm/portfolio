@@ -12,7 +12,7 @@ import {
   Check,
   ExternalLink,
 } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
+import { GithubIcon, LinkedinIcon, VercelIcon } from "@/components/ui/SocialIcons";
 import confetti from "canvas-confetti";
 
 export function Contact() {
@@ -209,9 +209,29 @@ export function Contact() {
                       <GithubIcon className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="text-sm font-semibold block">GitHub Repositories</span>
+                      <span className="text-sm font-semibold block">GitHub Profile</span>
                       <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                        rohan-cse
+                        muhammadrohan3002-lgtm
+                      </span>
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+
+                <a
+                  href={personal.vercel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-white dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:border-violet-500/40 hover:text-white transition-all shadow-sm group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
+                      <VercelIcon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-sm font-semibold block">Vercel Deployments</span>
+                      <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                        muhammadrohan3002-lgtms-projects
                       </span>
                     </div>
                   </div>

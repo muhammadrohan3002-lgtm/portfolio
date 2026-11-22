@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import {
   ArrowDown,
@@ -14,7 +15,7 @@ import {
   Check,
   Layers,
 } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
+import { GithubIcon, LinkedinIcon, VercelIcon } from "@/components/ui/SocialIcons";
 
 interface HeroProps {
   onOpenResume: () => void;
@@ -60,18 +61,44 @@ export function Hero({ onOpenResume }: HeroProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Headline, Bio & CTAs (7 cols) */}
+          {/* Left Column: Profile Avatar, Headline, Bio & CTAs (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Status Pill */}
-            {personal.availableForOpportunities && (
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-sm">
-                <span className="relative flex h-2 w-2">
+            {/* Top Row: Prominent Profile Photograph & Status Pill */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-2">
+              {/* Prominent Profile Portrait Image */}
+              <div className="relative group shrink-0">
+                {/* Glow ring */}
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-violet-600 via-indigo-500 to-cyan-400 opacity-75 blur-md group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-white/20 dark:border-zinc-800 shadow-2xl bg-zinc-900">
+                  <Image
+                    src={personal.avatarUrl}
+                    alt={`${personal.name} - ${personal.title}`}
+                    width={112}
+                    height={112}
+                    priority
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {/* Online pulse indicator */}
+                <span className="absolute bottom-1 right-1 flex h-4 w-4">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-background" />
                 </span>
-                <span>Available for Software Opportunities & Internships</span>
               </div>
-            )}
+
+              {/* Status Pill & Identity Meta */}
+              <div className="flex flex-col items-center sm:items-start gap-1.5">
+                {personal.availableForOpportunities && (
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-xs">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Available for Opportunities</span>
+                  </div>
+                )}
+                <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                  {personal.department} • {personal.university}
+                </span>
+              </div>
+            </div>
 
             {/* Main Headline with balanced typography */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12] text-balance">
@@ -98,7 +125,7 @@ export function Hero({ onOpenResume }: HeroProps) {
               {personal.bioShort}
             </p>
 
-            {/* Call to Actions */}
+            {/* Call to Actions & Social Buttons */}
             <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
               <a
                 href="#projects"
@@ -136,44 +163,57 @@ export function Hero({ onOpenResume }: HeroProps) {
               </button>
             </div>
 
-            {/* Social Links & Academic Tag */}
-            <div className="pt-6 border-t border-zinc-200/80 dark:border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            {/* Direct Social Links: GitHub, LinkedIn, Vercel & Mailto */}
+            <div className="pt-6 border-t border-zinc-200/80 dark:border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
               <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                Profiles:
+                Connect & Follow:
               </span>
+
               <div className="flex items-center gap-2">
-                <a
-                  href={personal.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn profile"
-                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-sm"
-                >
-                  <LinkedinIcon className="w-4 h-4" />
-                </a>
+                {/* GitHub Button */}
                 <a
                   href={personal.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="GitHub profile"
-                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-sm"
+                  aria-label="Rohan's GitHub Profile"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:text-violet-500 transition-colors text-xs font-medium shadow-xs"
                 >
                   <GithubIcon className="w-4 h-4" />
+                  <span>GitHub</span>
                 </a>
+
+                {/* LinkedIn Button */}
+                <a
+                  href={personal.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Rohan's LinkedIn Profile"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:text-blue-500 transition-colors text-xs font-medium shadow-xs"
+                >
+                  <LinkedinIcon className="w-4 h-4 text-blue-500" />
+                  <span>LinkedIn</span>
+                </a>
+
+                {/* Vercel Button */}
+                <a
+                  href={personal.vercel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Rohan's Vercel Deployments"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:text-white transition-colors text-xs font-medium shadow-xs"
+                >
+                  <VercelIcon className="w-3.5 h-3.5" />
+                  <span>Vercel</span>
+                </a>
+
+                {/* Direct Mailto Contact */}
                 <a
                   href={`mailto:${personal.email}`}
-                  aria-label="Send direct email"
-                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-sm"
+                  aria-label="Send Email directly"
+                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-xs"
                 >
                   <Mail className="w-4 h-4" />
                 </a>
-              </div>
-
-              <span className="hidden sm:inline text-zinc-300 dark:text-zinc-700">•</span>
-
-              <div className="inline-flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
-                <span>{personal.department} • {personal.university}</span>
               </div>
             </div>
           </div>
@@ -181,7 +221,7 @@ export function Hero({ onOpenResume }: HeroProps) {
           {/* Right Column: Interactive Developer Cockpit IDE (5 cols) */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md">
-              {/* Corner crosshairs (Linear aesthetic) */}
+              {/* Corner crosshairs */}
               <div className="absolute -top-2 -left-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
               <div className="absolute -top-2 -right-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
               <div className="absolute -bottom-2 -left-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
@@ -237,9 +277,14 @@ export function Hero({ onOpenResume }: HeroProps) {
 
                 {/* Developer Profile Header inside Cockpit */}
                 <div className="flex items-center gap-3.5 mb-4 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/80">
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-violet-500/20 shrink-0">
-                    <span>RA</span>
-                    <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-zinc-300 dark:border-zinc-700 shadow-md shrink-0 bg-zinc-900">
+                    <Image
+                      src={personal.avatarUrl}
+                      alt={personal.name}
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                   <div className="min-w-0">
                     <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5 truncate">
@@ -279,13 +324,12 @@ export function Hero({ onOpenResume }: HeroProps) {
                         <span className="text-amber-300">&quot;MongoDB&quot;</span>],
                       </p>
                       <p className="pl-4">
-                        <span className="text-zinc-400">seeking:</span>{" "}
-                        <span className="text-cyan-400">&quot;Software Internships / Dev Roles&quot;</span>,
+                        <span className="text-zinc-400">github:</span>{" "}
+                        <span className="text-blue-300">&quot;muhammadrohan3002-lgtm&quot;</span>,
                       </p>
                       <p className="pl-4">
-                        <span className="text-zinc-400">mindset:</span>{" "}
-                        <span className="text-pink-400">() =&gt;</span>{" "}
-                        <span className="text-emerald-400">&quot;High-Velocity Learning&quot;</span>,
+                        <span className="text-zinc-400">seeking:</span>{" "}
+                        <span className="text-cyan-400">&quot;Software Internships / Dev Roles&quot;</span>,
                       </p>
                       <p className="text-blue-300">&#125;;</p>
                     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GraduationCap, Code2, Layers, BookOpen, CheckCircle2 } from "lucide-react";
@@ -24,10 +25,16 @@ export function About() {
             <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-zinc-200/80 dark:border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-violet-600/10 blur-3xl pointer-events-none" />
 
-              {/* Profile Card Header */}
+              {/* Profile Card Header with Actual Photograph */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-zinc-900 dark:bg-zinc-800 border border-zinc-700/50 flex items-center justify-center text-violet-400 font-bold text-xl">
-                  RA
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-violet-500/30 shadow-xl bg-zinc-900 shrink-0">
+                  <Image
+                    src={personal.avatarUrl}
+                    alt={`${personal.name} portrait`}
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-foreground">{personal.name}</h3>
