@@ -77,7 +77,7 @@ const jsonLd = {
   image: "https://rohanali.dev/rohan-profile.jpg",
   email: "mailto:muhammadrohan3002@gmail.com",
   sameAs: [
-    "https://linkedin.com/in/muhammad-rohan-094494373/",
+    "https://www.linkedin.com/in/muhammad-rohan-094494373/",
     "https://github.com/muhammadrohan3002-lgtm",
     "https://vercel.com/muhammadrohan3002-lgtms-projects",
   ],

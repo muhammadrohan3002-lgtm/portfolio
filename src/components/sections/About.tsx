@@ -5,6 +5,7 @@ import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GraduationCap, Code2, Layers, BookOpen, CheckCircle2 } from "lucide-react";
+import { LinkedinIcon } from "@/components/ui/SocialIcons";
 
 export function About() {
   const { personal, about } = PORTFOLIO_DATA;
@@ -44,6 +45,16 @@ export function About() {
                   <p className="text-xs text-zinc-500 dark:text-zinc-400">
                     {personal.university}
                   </p>
+                  <a
+                    href={personal.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Connect with Rohan on LinkedIn"
+                    className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/20 transition-colors"
+                  >
+                    <LinkedinIcon className="w-3.5 h-3.5" />
+                    <span>Connect on LinkedIn</span>
+                  </a>
                 </div>
               </div>
 

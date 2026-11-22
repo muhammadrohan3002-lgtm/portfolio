@@ -64,7 +64,7 @@ export const PORTFOLIO_DATA = {
     location: "Dhaka, Bangladesh",
     avatarUrl: "/rohan-profile.jpg",
     email: "muhammadrohan3002@gmail.com",
-    linkedin: "https://linkedin.com/in/muhammad-rohan-094494373/",
+    linkedin: "https://www.linkedin.com/in/muhammad-rohan-094494373/",
     github: "https://github.com/muhammadrohan3002-lgtm",
     vercel: "https://vercel.com/muhammadrohan3002-lgtms-projects",
     resumeDownloadUrl: "/cv/Rohan_Ali_CV.pdf",

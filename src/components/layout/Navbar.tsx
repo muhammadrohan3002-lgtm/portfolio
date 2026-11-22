@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X, FileText, ArrowUpRight } from "lucide-react";
+import { LinkedinIcon } from "@/components/ui/SocialIcons";
+import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -105,8 +107,18 @@ export function Navbar() {
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-2.5">
           <ThemeToggle />
+
+          <a
+            href={PORTFOLIO_DATA.personal.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Connect with Rohan on LinkedIn"
+            className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/80 dark:border-white/10 transition-colors shadow-xs"
+          >
+            <LinkedinIcon className="w-4 h-4 text-blue-500" />
+          </a>
 
           <a
             href="/cv/Rohan_Ali_CV.pdf"
@@ -114,7 +126,7 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Download Rohan Ali CV (PDF)"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-zinc-900 dark:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-300/80 dark:border-white/10 transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-violet-500 active:scale-95"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-zinc-900 dark:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-300/80 dark:border-white/10 transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-violet-500 active:scale-95"
           >
             <FileText className="w-3.5 h-3.5 text-violet-500" />
             <span>Download CV</span>
@@ -169,6 +181,17 @@ export function Navbar() {
             })}
 
             <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-2.5">
+              <a
+                href={PORTFOLIO_DATA.personal.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 min-h-[44px] transition-colors"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+                <span>Connect on LinkedIn</span>
+              </a>
+
               <a
                 href="/cv/Rohan_Ali_CV.pdf"
                 download="Rohan_Ali_CV.pdf"
