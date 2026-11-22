@@ -2,7 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import { ArrowDown, FileText, Mail, Sparkles, Terminal, Code2, Cpu } from "lucide-react";
+import {
+  ArrowDown,
+  FileText,
+  Mail,
+  Sparkles,
+  Terminal,
+  Code2,
+  Cpu,
+  Copy,
+  Check,
+  Layers,
+} from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 
 interface HeroProps {
@@ -11,14 +22,18 @@ interface HeroProps {
 
 const ROLES = [
   "Full-Stack Web Developer",
-  "Cross-Platform Mobile Developer",
-  "CSE Student @ City University",
-  "Problem Solver & Tech Explorer",
+  "Cross-Platform Mobile Engineer",
+  "Computer Science & Engineering Student",
+  "Crafting Clean, Practical Software",
 ];
+
+type ActiveTab = "config" | "stack" | "academic";
 
 export function Hero({ onOpenResume }: HeroProps) {
   const { personal } = PORTFOLIO_DATA;
   const [roleIndex, setRoleIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<ActiveTab>("config");
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,28 +42,39 @@ export function Hero({ onOpenResume }: HeroProps) {
     return () => clearInterval(interval);
   }, []);
 
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personal.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch {
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 lg:py-32 overflow-hidden"
+      className="relative min-h-[94vh] flex items-center justify-center pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headline, Bio & CTAs (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Opportunity Status Pill */}
+            {/* Status Pill */}
             {personal.availableForOpportunities && (
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span>Available for Opportunities & Internships</span>
+                <span>Available for Software Opportunities & Internships</span>
               </div>
             )}
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12]">
+            {/* Main Headline with balanced typography */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12] text-balance">
               Building Digital Experiences That{" "}
               <span className="text-gradient-primary inline-block">
                 Make an Impact.
@@ -56,9 +82,12 @@ export function Hero({ onOpenResume }: HeroProps) {
             </h1>
 
             {/* Dynamic Role Cycling Indicator */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-sm sm:base font-mono font-medium text-violet-600 dark:text-violet-400 min-h-[28px]">
-              <Terminal className="w-4 h-4 text-violet-500 shrink-0" />
-              <span>role:</span>
+            <div className="flex items-center justify-center lg:justify-start gap-2.5 text-sm sm:text-base font-mono font-medium min-h-[30px]">
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20 text-xs">
+                <Terminal className="w-3.5 h-3.5 text-violet-500" />
+                <span>role</span>
+              </span>
+              <span className="text-zinc-400 dark:text-zinc-500">=</span>
               <span className="transition-all duration-300 font-semibold text-zinc-900 dark:text-zinc-100">
                 &quot;{ROLES[roleIndex]}&quot;
               </span>
@@ -73,25 +102,44 @@ export function Hero({ onOpenResume }: HeroProps) {
             <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/25 transition-all hover:scale-[1.02]"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>View My Projects</span>
-                <ArrowDown className="w-4 h-4" />
+                <span>View Featured Projects</span>
+                <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
               </a>
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-zinc-800 dark:text-zinc-200 bg-white/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-300/80 dark:border-white/10 shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-zinc-800 dark:text-zinc-200 bg-white/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-300/80 dark:border-white/10 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <FileText className="w-4 h-4 text-violet-500" />
                 <span>Download CV</span>
               </button>
+
+              <button
+                onClick={handleCopyEmail}
+                title="Copy email to clipboard"
+                aria-label="Copy Rohan's email"
+                className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-900/80 hover:bg-zinc-200 dark:hover:bg-zinc-800 border border-zinc-300/70 dark:border-zinc-800 transition-colors shadow-sm"
+              >
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-500" />
+                    <span className="text-emerald-600 dark:text-emerald-400">Email Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-zinc-400" />
+                    <span>Copy Email</span>
+                  </>
+                )}
+              </button>
             </div>
 
-            {/* Social Links & University Tag */}
+            {/* Social Links & Academic Tag */}
             <div className="pt-6 border-t border-zinc-200/80 dark:border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                Connect:
+                Profiles:
               </span>
               <div className="flex items-center gap-2">
                 <a
@@ -99,7 +147,7 @@ export function Hero({ onOpenResume }: HeroProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn profile"
-                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors"
+                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-sm"
                 >
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
@@ -108,14 +156,14 @@ export function Hero({ onOpenResume }: HeroProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub profile"
-                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors"
+                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-sm"
                 >
                   <GithubIcon className="w-4 h-4" />
                 </a>
                 <a
                   href={`mailto:${personal.email}`}
-                  aria-label="Send Email"
-                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors"
+                  aria-label="Send direct email"
+                  className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-violet-500 transition-colors shadow-sm"
                 >
                   <Mail className="w-4 h-4" />
                 </a>
@@ -130,74 +178,171 @@ export function Hero({ onOpenResume }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Column: Visual Profile & Code Terminal Mockup (5 cols) */}
+          {/* Right Column: Interactive Developer Cockpit IDE (5 cols) */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-violet-600 to-cyan-500 opacity-20 blur-xl" />
+              {/* Corner crosshairs (Linear aesthetic) */}
+              <div className="absolute -top-2 -left-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
+              <div className="absolute -top-2 -right-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
+              <div className="absolute -bottom-2 -left-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
+              <div className="absolute -bottom-2 -right-2 text-zinc-400 dark:text-zinc-600 text-xs font-mono select-none">+</div>
 
-              <div className="relative rounded-2xl glass-panel p-6 shadow-2xl border border-zinc-200 dark:border-white/10 bg-white/90 dark:bg-zinc-950/85">
-                <div className="flex items-center justify-between pb-4 border-b border-zinc-200 dark:border-zinc-800/80 mb-5">
-                  <div className="flex items-center gap-2">
+              {/* Ambient radial glow */}
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-violet-600/30 to-cyan-500/30 opacity-30 blur-2xl pointer-events-none" />
+
+              {/* Developer Cockpit Card */}
+              <div className="relative rounded-2xl glass-panel p-5 sm:p-6 shadow-2xl border border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-950/90 transition-all">
+                {/* IDE Tab Header */}
+                <div className="flex items-center justify-between pb-3.5 border-b border-zinc-200 dark:border-zinc-800 mb-4">
+                  <div className="flex items-center gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-500/80" />
                     <div className="w-3 h-3 rounded-full bg-amber-500/80" />
                     <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                    <span className="ml-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                      developer.config.ts
-                    </span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-violet-500/10 text-violet-600 dark:text-violet-400">
-                    v2.5
-                  </span>
+
+                  {/* Clickable Interactive Tabs */}
+                  <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-900 p-0.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800">
+                    <button
+                      onClick={() => setActiveTab("config")}
+                      className={`px-2.5 py-1 text-[11px] font-mono rounded-md transition-colors ${
+                        activeTab === "config"
+                          ? "bg-white dark:bg-zinc-800 text-violet-600 dark:text-violet-400 font-semibold shadow-xs"
+                          : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                      }`}
+                    >
+                      config.ts
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("stack")}
+                      className={`px-2.5 py-1 text-[11px] font-mono rounded-md transition-colors ${
+                        activeTab === "stack"
+                          ? "bg-white dark:bg-zinc-800 text-cyan-600 dark:text-cyan-400 font-semibold shadow-xs"
+                          : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                      }`}
+                    >
+                      stack.json
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("academic")}
+                      className={`px-2.5 py-1 text-[11px] font-mono rounded-md transition-colors ${
+                        activeTab === "academic"
+                          ? "bg-white dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 font-semibold shadow-xs"
+                          : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                      }`}
+                    >
+                      city-uni.log
+                    </button>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-violet-500/20">
+                {/* Developer Profile Header inside Cockpit */}
+                <div className="flex items-center gap-3.5 mb-4 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/80">
+                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-violet-500/20 shrink-0">
                     <span>RA</span>
-                    <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
+                    <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-950" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5 truncate">
                       {personal.name}
-                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     </h3>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                      City University • CSE
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
+                      {personal.department} • {personal.university}
                     </p>
-                    <p className="text-xs font-medium text-violet-600 dark:text-violet-400 mt-0.5">
+                    <p className="text-[11px] font-medium text-violet-600 dark:text-violet-400 mt-0.5">
                       Full-Stack & Mobile Development
                     </p>
                   </div>
                 </div>
 
-                <div className="rounded-xl p-4 bg-zinc-900 text-zinc-300 font-mono text-xs leading-relaxed overflow-x-auto shadow-inner border border-zinc-800">
-                  <p className="text-zinc-500">{"// Personal Architecture Specs"}</p>
-                  <p>
-                    <span className="text-purple-400">const</span>{" "}
-                    <span className="text-blue-300">developer</span> = &#123;
-                  </p>
-                  <p className="pl-4">
-                    <span className="text-zinc-400">name:</span>{" "}
-                    <span className="text-emerald-400">&quot;Rohan Ali&quot;</span>,
-                  </p>
-                  <p className="pl-4">
-                    <span className="text-zinc-400">focus:</span> [
-                    <span className="text-amber-300">&quot;Next.js&quot;</span>,{" "}
-                    <span className="text-amber-300">&quot;Flutter&quot;</span>,{" "}
-                    <span className="text-amber-300">&quot;MongoDB&quot;</span>],
-                  </p>
-                  <p className="pl-4">
-                    <span className="text-zinc-400">status:</span>{" "}
-                    <span className="text-cyan-400">&quot;Seeking Opportunities&quot;</span>,
-                  </p>
-                  <p className="pl-4">
-                    <span className="text-zinc-400">mindset:</span>{" "}
-                    <span className="text-pink-400">() =&gt;</span>{" "}
-                    <span className="text-emerald-400">&quot;Continuous Growth&quot;</span>,
-                  </p>
-                  <p>&#125;;</p>
+                {/* Code Body based on activeTab */}
+                <div className="rounded-xl p-4 bg-zinc-950 text-zinc-300 font-mono text-xs leading-relaxed overflow-x-auto shadow-inner border border-zinc-800/80 min-h-[175px]">
+                  {activeTab === "config" && (
+                    <div className="space-y-1">
+                      <p className="text-zinc-500">{"// developer.config.ts"}</p>
+                      <p>
+                        <span className="text-purple-400">export default</span>{" "}
+                        <span className="text-blue-300">&#123;</span>
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">engineer:</span>{" "}
+                        <span className="text-emerald-400">&quot;Rohan Ali&quot;</span>,
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">university:</span>{" "}
+                        <span className="text-emerald-400">&quot;City University&quot;</span>,
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">stack:</span> [
+                        <span className="text-amber-300">&quot;Next.js&quot;</span>,{" "}
+                        <span className="text-amber-300">&quot;Flutter&quot;</span>,{" "}
+                        <span className="text-amber-300">&quot;MongoDB&quot;</span>],
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">seeking:</span>{" "}
+                        <span className="text-cyan-400">&quot;Software Internships / Dev Roles&quot;</span>,
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">mindset:</span>{" "}
+                        <span className="text-pink-400">() =&gt;</span>{" "}
+                        <span className="text-emerald-400">&quot;High-Velocity Learning&quot;</span>,
+                      </p>
+                      <p className="text-blue-300">&#125;;</p>
+                    </div>
+                  )}
+
+                  {activeTab === "stack" && (
+                    <div className="space-y-1">
+                      <p className="text-zinc-500">{"// tech-stack.json"}</p>
+                      <p className="text-blue-300">&#123;</p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">&quot;frontend&quot;:</span> [
+                        <span className="text-emerald-400">&quot;React.js&quot;</span>,{" "}
+                        <span className="text-emerald-400">&quot;Next.js&quot;</span>,{" "}
+                        <span className="text-emerald-400">&quot;Tailwind CSS&quot;</span>],
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">&quot;mobile&quot;:</span> [
+                        <span className="text-cyan-400">&quot;Flutter&quot;</span>,{" "}
+                        <span className="text-cyan-400">&quot;Dart&quot;</span>],
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">&quot;backend&quot;:</span> [
+                        <span className="text-amber-300">&quot;Node.js&quot;</span>,{" "}
+                        <span className="text-amber-300">&quot;REST APIs&quot;</span>],
+                      </p>
+                      <p className="pl-4">
+                        <span className="text-zinc-400">&quot;database&quot;:</span> [
+                        <span className="text-emerald-400">&quot;MongoDB&quot;</span>]
+                      </p>
+                      <p className="text-blue-300">&#125;</p>
+                    </div>
+                  )}
+
+                  {activeTab === "academic" && (
+                    <div className="space-y-1">
+                      <p className="text-zinc-500">{"// academic.log"}</p>
+                      <p className="text-zinc-400">
+                        [INSTITUTION] <span className="text-white">City University</span>
+                      </p>
+                      <p className="text-zinc-400">
+                        [DEGREE] <span className="text-emerald-400">B.Sc. in Computer Science & Eng.</span>
+                      </p>
+                      <p className="text-zinc-400">
+                        [BATCH] <span className="text-amber-300">59th Batch (CSE)</span>
+                      </p>
+                      <p className="text-zinc-400">
+                        [CORE COURSES] Algorithms, OOP, DBMS, Software Engineering, Networks
+                      </p>
+                      <p className="text-zinc-400">
+                        [STATUS] <span className="text-cyan-400">Active Undergraduate Student</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-zinc-200 dark:border-zinc-800/80 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+                {/* Quick Capability Tags */}
+                <div className="mt-4 pt-3.5 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
                   <div className="flex items-center gap-1.5">
                     <Code2 className="w-3.5 h-3.5 text-violet-500" />
                     <span>Clean Code</span>
@@ -207,8 +352,8 @@ export function Hero({ onOpenResume }: HeroProps) {
                     <span>Cross-Platform</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Modern Stack</span>
+                    <Layers className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>Full-Stack</span>
                   </div>
                 </div>
               </div>

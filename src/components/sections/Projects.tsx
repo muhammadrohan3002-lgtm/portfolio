@@ -20,7 +20,7 @@ export function Projects() {
       : projects.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-20 lg:py-28 relative">
+    <section id="projects" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Featured Engineering Work"
@@ -36,7 +36,7 @@ export function Projects() {
               key={tab}
               onClick={() => setSelectedCategory(tab)}
               className={cn(
-                "px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200",
+                "px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-violet-500 min-h-[38px]",
                 selectedCategory === tab
                   ? "bg-violet-600 text-white shadow-md shadow-violet-500/25 scale-105"
                   : "bg-white/80 dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white border border-zinc-200 dark:border-white/10"

@@ -51,7 +51,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         <button
           onClick={onClose}
           aria-label="Close modal"
-          className="absolute top-5 right-5 p-2 rounded-full text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 transition-colors"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2.5 rounded-full text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors focus-visible:ring-2 focus-visible:ring-violet-500"
         >
           <X className="w-5 h-5" />
         </button>

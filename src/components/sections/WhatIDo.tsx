@@ -22,7 +22,7 @@ export function WhatIDo() {
   };
 
   return (
-    <section id="services" className="py-20 lg:py-28 relative">
+    <section id="services" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Areas of Capability"

@@ -73,7 +73,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             <button
               onClick={onClose}
               aria-label="Close resume modal"
-              className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              className="p-2 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors focus-visible:ring-2 focus-visible:ring-violet-500"
             >
               <X className="w-5 h-5" />
             </button>

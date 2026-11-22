@@ -9,7 +9,7 @@ export function Education() {
   const { education } = PORTFOLIO_DATA;
 
   return (
-    <section id="education" className="py-20 lg:py-28 relative">
+    <section id="education" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Academic Background"

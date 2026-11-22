@@ -118,7 +118,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 relative">
+    <section id="contact" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Get In Touch"
@@ -276,7 +276,7 @@ export function Contact() {
                       placeholder="e.g. Alex Johnson"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
+                      className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
                     />
                   </div>
 
@@ -295,7 +295,7 @@ export function Contact() {
                       placeholder="alex@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
+                      className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
                     />
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export function Contact() {
                     placeholder="Internship opportunity / Project collaboration"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
+                    className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
                   />
                 </div>
 

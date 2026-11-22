@@ -64,6 +64,33 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Rohan Ali",
+  jobTitle: "Full-Stack Developer",
+  affiliation: {
+    "@type": "EducationalOrganization",
+    name: "City University",
+    department: "Department of Computer Science & Engineering",
+  },
+  sameAs: [
+    "https://linkedin.com/in/muhammad-rohan-094494373/",
+    "https://github.com/rohan-cse",
+  ],
+  knowsAbout: [
+    "Full-Stack Development",
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Flutter",
+    "Dart",
+    "MongoDB",
+    "RESTful APIs",
+    "Computer Science Fundamentals",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -75,6 +102,12 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-violet-500/30 selection:text-foreground`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300 relative">
         <ThemeProvider
           attribute="class"

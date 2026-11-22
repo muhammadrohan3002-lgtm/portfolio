@@ -38,7 +38,7 @@ export function SectionHeader({
       </div>
 
       {/* Main Headline */}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground text-balance">
         {title}{" "}
         {highlight && (
           <span className="text-gradient-primary inline-block">
@@ -49,7 +49,7 @@ export function SectionHeader({
 
       {/* Description */}
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-zinc-600 dark:text-zinc-400">
+        <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-zinc-600 dark:text-zinc-400 text-balance">
           {description}
         </p>
       )}
