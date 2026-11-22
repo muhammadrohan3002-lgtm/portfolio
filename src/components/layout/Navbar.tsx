@@ -5,10 +5,6 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X, FileText, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface NavbarProps {
-  onOpenResume: () => void;
-}
-
 const NAV_ITEMS = [
   { label: "Home", href: "#hero" },
   { label: "About", href: "#about" },
@@ -19,7 +15,7 @@ const NAV_ITEMS = [
   { label: "Contact", href: "#contact" },
 ];
 
-export function Navbar({ onOpenResume }: NavbarProps) {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -112,14 +108,17 @@ export function Navbar({ onOpenResume }: NavbarProps) {
         <div className="hidden sm:flex items-center gap-3">
           <ThemeToggle />
 
-          <button
-            onClick={onOpenResume}
-            aria-label="Open Curriculum Vitae / Resume"
+          <a
+            href="/cv/Rohan_Ali_CV.pdf"
+            download="Rohan_Ali_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download Rohan Ali CV (PDF)"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-zinc-900 dark:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-300/80 dark:border-white/10 transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-violet-500 active:scale-95"
           >
             <FileText className="w-3.5 h-3.5 text-violet-500" />
             <span>Download CV</span>
-          </button>
+          </a>
 
           <a
             href="#contact"
@@ -170,16 +169,17 @@ export function Navbar({ onOpenResume }: NavbarProps) {
             })}
 
             <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-2.5">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenResume();
-                }}
+              <a
+                href="/cv/Rohan_Ali_CV.pdf"
+                download="Rohan_Ali_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 min-h-[44px]"
               >
                 <FileText className="w-4 h-4 text-violet-500" />
                 <span>Download CV</span>
-              </button>
+              </a>
 
               <a
                 href="#contact"

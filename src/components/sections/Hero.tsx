@@ -17,10 +17,6 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, VercelIcon } from "@/components/ui/SocialIcons";
 
-interface HeroProps {
-  onOpenResume: () => void;
-}
-
 const ROLES = [
   "Full-Stack Web Developer",
   "Cross-Platform Mobile Engineer",
@@ -30,7 +26,7 @@ const ROLES = [
 
 type ActiveTab = "config" | "stack" | "academic";
 
-export function Hero({ onOpenResume }: HeroProps) {
+export function Hero() {
   const { personal } = PORTFOLIO_DATA;
   const [roleIndex, setRoleIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<ActiveTab>("config");
@@ -135,13 +131,17 @@ export function Hero({ onOpenResume }: HeroProps) {
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
               </a>
 
-              <button
-                onClick={onOpenResume}
+              <a
+                href="/cv/Rohan_Ali_CV.pdf"
+                download="Rohan_Ali_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Rohan Ali CV (PDF)"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-zinc-800 dark:text-zinc-200 bg-white/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-300/80 dark:border-white/10 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <FileText className="w-4 h-4 text-violet-500" />
                 <span>Download CV</span>
-              </button>
+              </a>
 
               <button
                 onClick={handleCopyEmail}

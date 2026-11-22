@@ -62,13 +62,24 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           </div>
 
           <div className="flex items-center gap-2">
+            <a
+              href="/cv/Rohan_Ali_CV.pdf"
+              download="Rohan_Ali_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download Official Rohan Ali CV (PDF)"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-violet-600 hover:bg-violet-500 text-white shadow-sm transition-colors"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download PDF</span>
+            </a>
             <button
               onClick={handlePrint}
-              aria-label="Print or save PDF"
+              aria-label="Print resume"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 transition-colors"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span>Print</span>
             </button>
             <button
               onClick={onClose}
@@ -263,13 +274,16 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           >
             Close
           </button>
-          <button
-            onClick={handlePrint}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-500/20 transition-all"
+          <a
+            href="/cv/Rohan_Ali_CV.pdf"
+            download="Rohan_Ali_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <Download className="w-4 h-4" />
-            Download / Print
-          </button>
+            Download Official CV (PDF)
+          </a>
         </div>
       </div>
     </div>

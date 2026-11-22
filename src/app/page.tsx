@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -10,19 +10,16 @@ import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Education } from "@/components/sections/Education";
 import { Contact } from "@/components/sections/Contact";
-import { ResumeModal } from "@/components/ui/ResumeModal";
 
 export default function HomePage() {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-
   return (
     <>
       {/* Sticky Header / Navbar */}
-      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+      <Navbar />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        <Hero onOpenResume={() => setIsResumeOpen(true)} />
+        <Hero />
         <About />
         <WhatIDo />
         <Skills />
@@ -33,12 +30,6 @@ export default function HomePage() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Interactive Resume / CV Modal */}
-      <ResumeModal
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
-      />
     </>
   );
 }

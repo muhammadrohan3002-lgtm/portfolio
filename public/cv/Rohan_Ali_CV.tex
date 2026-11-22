@@ -1,0 +1,137 @@
+%-------------------------
+% Rohan Ali - Professional ATS-Friendly CV
+% Format: One-Page A4 Resume
+% Color Scheme: Navy & Teal Accents
+% Typography: 10pt Times-compatible
+% Date: November 18, 2026
+%-------------------------
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Times-like clean font
+\usepackage[margin=0.55in, top=0.5in, bottom=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+% Accent Colors (Navy & Teal)
+\definecolor{navy}{RGB}{0, 32, 96}
+\definecolor{teal}{RGB}{0, 128, 128}
+\definecolor{darkgray}{RGB}{40, 40, 40}
+
+% Hyperref Setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=teal,
+    urlcolor=teal,
+    pdftitle={Rohan Ali - Junior Software Developer CV},
+    pdfauthor={Rohan Ali},
+    pdfsubject={Curriculum Vitae},
+    pdfkeywords={Full-Stack Developer, Flutter, Next.js, React, MongoDB, City University, CSE}
+}
+
+% Section Heading Formatting
+\titleformat{\section}
+  {\large\bfseries\color{navy}\scshape}
+  {}{0em}
+  {}[\color{teal}\titlerule\vspace{-4pt}]
+
+\titlespacing*{\section}{0pt}{6pt}{4pt}
+
+% Tight lists
+\setlist[itemize]{leftmargin=1.2em, itemsep=1pt, topsep=1pt, parsep=0pt}
+
+\pagestyle{empty}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%   HEADER SECTION
+%----------------------------------------------------------------------------------------
+\begin{center}
+    {\Huge\bfseries\color{navy} ROHAN ALI} \\[2pt]
+    {\large\color{teal}\textbf{Junior Software Developer} \textbar{} \textbf{CSE Student}} \\[3pt]
+    \small\color{darkgray}
+    Savar, Dhaka, Bangladesh \quad\textbullet\quad Phone: +880 1568-183853 \\[2pt]
+    Email: \href{mailto:muhammadrohan3002@gmail.com}{muhammadrohan3002@gmail.com} \quad\textbullet\quad
+    LinkedIn: \href{https://linkedin.com/in/muhammad-rohan-094494373/}{linkedin.com/in/muhammad-rohan-094494373} \quad\textbullet\quad
+    GitHub: \href{https://github.com/muhammadrohan3002-lgtm}{github.com/muhammadrohan3002-lgtm}
+\end{center}
+\vspace{-6pt}
+
+%----------------------------------------------------------------------------------------
+%   PROFESSIONAL SUMMARY
+%----------------------------------------------------------------------------------------
+\section{Professional Summary}
+Motivated Junior Software Developer and Computer Science \& Engineering student at City University with strong fundamentals in software engineering, data structures, and algorithms. Experienced in building full-stack web applications with Next.js, React, and MongoDB, as well as cross-platform mobile apps with Flutter and Dart. Adept at designing clean RESTful APIs, implementing robust authentication systems, and creating responsive, accessible user interfaces. Seeking software development opportunities, internships, and collaborative team roles.
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Education}
+\textbf{City University} \hfill Savar, Dhaka, Bangladesh \\
+\textit{Bachelor of Science in Computer Science and Engineering (B.Sc. in CSE)} \hfill \textbf{2023 -- Present} \\
+\textbullet{} \textbf{Batch:} 59th Batch (CSE) \quad\textbullet{} \textbf{Department:} Computer Science \& Engineering \\
+\textbullet{} \textbf{Relevant Coursework:} Data Structures \& Algorithms, Object-Oriented Programming (OOP), Database Management Systems (DBMS), Software Engineering \& Design, Web Technologies, Computer Networks, Operating Systems.
+
+%----------------------------------------------------------------------------------------
+%   TECHNICAL SKILLS
+%----------------------------------------------------------------------------------------
+\section{Technical Skills}
+\begin{itemize}
+    \item \textbf{Frontend Development:} HTML5, CSS3, JavaScript (ES6+), React.js, Next.js (App Router), Tailwind CSS.
+    \item \textbf{Backend Development:} Node.js Fundamentals, Next.js Route Handlers, REST APIs, CRUD Operations, JWT Auth.
+    \item \textbf{Database Systems:} MongoDB, Mongoose ODM, Document Data Modeling, Query Optimization.
+    \item \textbf{Mobile Development:} Flutter, Dart, Riverpod State Management, GoRouter, Cross-Platform Deployment.
+    \item \textbf{Developer Tools \& Workflow:} Git, GitHub, VS Code, Google Antigravity, AI-Assisted Development Tools, Postman.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   FEATURED PROJECTS
+%----------------------------------------------------------------------------------------
+\section{Featured Projects}
+\textbf{Smart Routine \& Management App} \textbar{} \textit{Flutter, Dart, Next.js, MongoDB, REST APIs} \hfill \textbf{2024} \\
+\textit{Cross-platform academic productivity application engineered for university students.}
+\begin{itemize}
+    \item Architected mobile client in Flutter with Riverpod state management and Next.js REST API backend.
+    \item Developed JWT-based authentication with bcrypt password hashing and strict student data isolation.
+    \item Implemented dynamic class routine scheduling, conflict detection engine, task/exam tracking with priority tags.
+    \item Built attendance calculation gauge with 75\% warning threshold and integrated focus session tracking.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{SkillSphere – Online Learning Platform} \textbar{} \textit{Next.js, React, Tailwind CSS, MongoDB, Better Auth} \hfill \textbf{2024} \\
+\textit{Modern full-stack web learning portal focused on delivering an organized digital educational experience.}
+\begin{itemize}
+    \item Developed server-rendered web application with Next.js App Router and responsive Tailwind styling.
+    \item Implemented secure authentication and session management using Better Auth and MongoDB storage.
+    \item Built modular course catalog with search filtering, curriculum progress tracking, and accessible UI components.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   EXPERIENCE & ACADEMIC IMPLEMENTATIONS
+%----------------------------------------------------------------------------------------
+\section{Experience}
+\textbf{Junior Software Developer (Academic \& Project Engineering)} \hfill \textbf{2023 -- Present} \\
+\textit{City University \& Independent Software Development} \hfill Savar, Dhaka, Bangladesh
+\begin{itemize}
+    \item Designed, implemented, and tested full-stack web and mobile systems following clean architecture principles.
+    \item Developed stateless REST APIs with robust error handling, JSON schema validation, and database connection pooling.
+    \item Managed source code versioning with Git and GitHub, adhering to disciplined commit and branching workflows.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   ADDITIONAL INFORMATION
+%----------------------------------------------------------------------------------------
+\section{Additional Information}
+\begin{itemize}
+    \item \textbf{Languages:} English (Professional Working Proficiency), Bengali (Native).
+    \item \textbf{Interests:} Mobile App Architecture, Modern Full-Stack Ecosystems, Open-Source Software, Problem Solving.
+    \item \textbf{Career Focus:} Software Engineer Intern, Full-Stack Developer, Mobile Application Developer.
+\end{itemize}
+
+\end{document}

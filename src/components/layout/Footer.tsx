@@ -110,6 +110,17 @@ export function Footer() {
                   Education
                 </a>
               </li>
+              <li>
+                <a
+                  href="/cv/Rohan_Ali_CV.pdf"
+                  download="Rohan_Ali_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-violet-600 dark:hover:text-violet-400 transition-colors text-violet-600 dark:text-violet-400 font-medium"
+                >
+                  Download CV (PDF)
+                </a>
+              </li>
             </ul>
           </div>
 

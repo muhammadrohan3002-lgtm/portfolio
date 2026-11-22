@@ -67,7 +67,7 @@ export const PORTFOLIO_DATA = {
     linkedin: "https://linkedin.com/in/muhammad-rohan-094494373/",
     github: "https://github.com/muhammadrohan3002-lgtm",
     vercel: "https://vercel.com/muhammadrohan3002-lgtms-projects",
-    resumeDownloadUrl: "#resume-modal",
+    resumeDownloadUrl: "/cv/Rohan_Ali_CV.pdf",
   },
 
   about: {
