@@ -373,7 +373,7 @@ export function Hero() {
                         [DEGREE] <span className="text-emerald-400">B.Sc. in Computer Science & Eng.</span>
                       </p>
                       <p className="text-zinc-400">
-                        [BATCH] <span className="text-amber-300">59th Batch (CSE)</span>
+                        [BATCH] <span className="text-amber-300">64th Batch (CSE)</span>
                       </p>
                       <p className="text-zinc-400">
                         [CORE COURSES] Algorithms, OOP, DBMS, Software Engineering, Networks

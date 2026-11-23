@@ -268,7 +268,7 @@ export const PORTFOLIO_DATA = {
     institution: "City University",
     department: "Department of Computer Science & Engineering (CSE)",
     degree: "Bachelor of Science in Computer Science and Engineering",
-    batch: "59th Batch (CSE)",
+    batch: "64th Batch (CSE)",
     period: "2023 – Present",
     location: "Dhaka, Bangladesh",
     description:
