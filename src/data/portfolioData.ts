@@ -61,7 +61,7 @@ export const PORTFOLIO_DATA = {
     careerGoal:
       "Seeking software development opportunities, internships, and collaboration with developers and technology teams.",
     availableForOpportunities: true,
-    location: "Dhaka, Bangladesh",
+    location: "Savar, Dhaka, Bangladesh",
     avatarUrl: "/rohan-profile.jpg",
     email: "muhammadrohan3002@gmail.com",
     linkedin: "https://www.linkedin.com/in/muhammad-rohan-094494373/",
@@ -270,7 +270,7 @@ export const PORTFOLIO_DATA = {
     degree: "Bachelor of Science in Computer Science and Engineering",
     batch: "64th Batch (CSE)",
     period: "2023 – Present",
-    location: "Dhaka, Bangladesh",
+    location: "Savar, Dhaka, Bangladesh",
     description:
       "Undertaking rigorous undergraduate study covering fundamental computer science theory, algorithms, software engineering principles, database architectures, and hands-on system implementation.",
     relevantCoursework: [

@@ -5,17 +5,46 @@ interface ContactRequestBody {
   email: string;
   subject: string;
   message: string;
+  honeypot?: string;
+  timestamp?: number;
 }
 
 export async function POST(request: Request) {
   try {
     const body: ContactRequestBody = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, email, subject, message, honeypot, timestamp } = body;
 
-    // Strict validation
+    // 1. Anti-spam honeypot detection
+    if (honeypot && honeypot.trim().length > 0) {
+      console.warn("[Contact API] Bot submission blocked by honeypot field.");
+      return NextResponse.json(
+        { success: false, error: "Automated submission detected." },
+        { status: 400 }
+      );
+    }
+
+    // 2. Anti-spam rapid submission check (< 1200ms humanly impossible)
+    if (timestamp && typeof timestamp === "number") {
+      const elapsed = Date.now() - timestamp;
+      if (elapsed < 1200) {
+        console.warn(`[Contact API] Rapid submission rejected (${elapsed}ms).`);
+        return NextResponse.json(
+          { success: false, error: "Submission was too fast. Please take a moment and try again." },
+          { status: 400 }
+        );
+      }
+    }
+
+    // 3. Strict field validation
     if (!name || typeof name !== "string" || name.trim().length < 2) {
       return NextResponse.json(
-        { success: false, error: "Please provide a valid name (at least 2 characters)." },
+        { success: false, error: "Please provide your full name (at least 2 characters)." },
+        { status: 400 }
+      );
+    }
+    if (name.trim().length > 100) {
+      return NextResponse.json(
+        { success: false, error: "Name must not exceed 100 characters." },
         { status: 400 }
       );
     }
@@ -27,10 +56,22 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    if (email.trim().length > 120) {
+      return NextResponse.json(
+        { success: false, error: "Email must not exceed 120 characters." },
+        { status: 400 }
+      );
+    }
 
     if (!subject || typeof subject !== "string" || subject.trim().length < 3) {
       return NextResponse.json(
         { success: false, error: "Please provide a subject line (at least 3 characters)." },
+        { status: 400 }
+      );
+    }
+    if (subject.trim().length > 150) {
+      return NextResponse.json(
+        { success: false, error: "Subject must not exceed 150 characters." },
         { status: 400 }
       );
     }
@@ -41,18 +82,30 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    if (message.trim().length > 5000) {
+      return NextResponse.json(
+        { success: false, error: "Message must not exceed 5000 characters." },
+        { status: 400 }
+      );
+    }
 
-    // Check if an email dispatch service is configured via environment variables
-    const resendApiKey = process.env.RESEND_API_KEY;
     const destinationEmail = process.env.CONTACT_EMAIL || "muhammadrohan3002@gmail.com";
+    const resendApiKey = process.env.RESEND_API_KEY;
 
     // Server-side audit log for contact inquiry
-    const timestamp = new Date().toISOString();
-    console.log(`[Contact Inquiry ${timestamp}] From: ${name.trim()} <${email.trim()}> | Subject: ${subject.trim()}`);
-    console.log(`[Message Body]: ${message.trim()}`);
+    const logTimestamp = new Date().toISOString();
+    console.log(`[Contact Inquiry ${logTimestamp}] From: ${name.trim()} <${email.trim()}> | Subject: ${subject.trim()}`);
+    console.log(`[Message Body]:\n${message.trim()}`);
 
+    // Pre-filled direct email URL fallback
+    const mailtoSubject = encodeURIComponent(`[Inquiry] ${subject.trim()}`);
+    const mailtoBody = encodeURIComponent(
+      `Hi Rohan,\n\n${message.trim()}\n\n---\nSent by: ${name.trim()}\nEmail: ${email.trim()}`
+    );
+    const directMailtoUrl = `mailto:${destinationEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+    // 4. Actual email delivery via Resend (when configured)
     if (resendApiKey) {
-      // If Resend API Key is provided in environment variables:
       try {
         const res = await fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -71,47 +124,45 @@ export async function POST(request: Request) {
 
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
-          console.error("Resend delivery failed:", errData);
-          throw new Error("Failed to dispatch email via external provider");
+          console.error("[Contact API] Resend dispatch failed:", errData);
+          throw new Error("Resend external API rejected the email request");
         }
 
         return NextResponse.json({
           success: true,
           delivered: true,
+          configured: true,
           message: "Your message has been sent successfully! Rohan will get back to you shortly.",
         });
       } catch (err: unknown) {
-        console.error("Email service error:", err);
+        console.error("[Contact API] Email delivery error:", err);
         return NextResponse.json(
           {
             success: false,
-            error: "Unable to dispatch email through the automated gateway at this moment. Please use the direct email link.",
+            delivered: false,
+            configured: true,
+            error: "Unable to dispatch email through the automated gateway at this moment. Please use the direct email link below.",
+            directMailtoUrl,
           },
           { status: 502 }
         );
       }
     }
 
-    // When no third-party email API key is configured in local/dev environment:
-    // We clearly report that the inquiry was captured on the server and provide the direct mailto fallback
-    const mailtoSubject = encodeURIComponent(`[Inquiry] ${subject.trim()}`);
-    const mailtoBody = encodeURIComponent(
-      `Hi Rohan,\n\n${message.trim()}\n\nBest regards,\n${name.trim()}\n${email.trim()}`
-    );
-    const directMailtoUrl = `mailto:${destinationEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
-
+    // 5. When automated delivery credentials are NOT configured:
+    // IMPORTANT: Never report success=true when email wasn't delivered!
     return NextResponse.json({
-      success: true,
+      success: false,
       delivered: false,
-      configuredProvider: false,
-      message:
-        "Your message was received and logged on the server. Because automated email delivery credentials are not set on this server, you can also launch a direct email pre-filled with your message.",
+      configured: false,
+      error: "Automated email delivery is awaiting server configuration (RESEND_API_KEY environment variable is not set).",
+      message: "Automated email delivery is not yet configured on this deployment. Please click the button below to send your pre-filled message directly to Rohan via your email client.",
       directMailtoUrl,
     });
   } catch (error: unknown) {
-    console.error("Contact API internal error:", error);
+    console.error("[Contact API] Internal route error:", error);
     return NextResponse.json(
-      { success: false, error: "An unexpected error occurred while processing your request." },
+      { success: false, delivered: false, error: "An unexpected error occurred while processing your request." },
       { status: 500 }
     );
   }
