@@ -136,7 +136,7 @@ export const PORTFOLIO_DATA = {
       tagline: "End-to-end practical application engineering",
       description:
         "Developing real-world applications including academic management tools and modern web platforms. Engineering complete solutions from UI design to data persistence.",
-      focusAreas: ["SkillSphere EdTech", "Keen Keepers", "Smart Routine App", "AI Tools Directory"],
+      focusAreas: ["SkillSphere EdTech", "Keen Keepers", "Smart Routine App", "Full-Stack Web Architectures"],
       icon: "Code2",
     },
     {
@@ -223,32 +223,6 @@ export const PORTFOLIO_DATA = {
       thumbnailUrl: "/projects/keen-keepers-preview.png",
       featured: true,
       accentColor: "from-blue-500/20 via-indigo-500/10 to-violet-500/20",
-    },
-    {
-      id: "ai-tools",
-      title: "AI Tools",
-      year: "2024",
-      category: "Frontend / AI Directory",
-      summary:
-        "An interactive directory and discovery portal for modern AI tools and platforms, featuring categorized exploration and direct access.",
-      description:
-        "An interactive directory and discovery portal for modern AI tools and platforms, featuring categorized exploration and direct access.",
-      tagline: "Curated directory & discovery portal for modern artificial intelligence tools",
-      fullDescription:
-        "AI Tools is a curated discovery platform that allows developers, designers, and creators to discover the best artificial intelligence tools across categories like generation, text, coding, and productivity. Built using React and Vite with Tailwind CSS, it offers snappy client-side search and clean card layouts.",
-      technologies: ["React", "Tailwind CSS", "DaisyUI", "Vite"],
-      features: [
-        "Categorized exploration across leading generative and developer AI tools",
-        "Fast client-side search and filtering",
-        "Responsive layout optimized for mobile and desktop screens",
-        "Direct link access with clean external navigation",
-      ],
-      status: "Completed",
-      liveUrl: "https://ai-tools-one-navy.vercel.app",
-      githubUrl: "https://github.com/muhammadrohan3002-lgtm/Ai-tools",
-      thumbnailUrl: "/projects/ai-tools-preview.png",
-      featured: true,
-      accentColor: "from-cyan-500/20 via-blue-500/10 to-teal-500/20",
     },
     {
       id: "skillsphere",
