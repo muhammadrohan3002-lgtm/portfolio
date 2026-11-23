@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Project } from "@/data/portfolioData";
 import {
   ExternalLink,
@@ -74,13 +75,36 @@ export function ProjectCard({ project, onSelect }: ProjectCardProps) {
         </div>
       </div>
 
-      {/* Visually Impressive UI Preview Mockup */}
+      {/* Visually Impressive UI Preview Mockup or Real Screenshot */}
       <div
         onClick={() => onSelect(project)}
-        className="relative z-10 w-full h-48 rounded-xl overflow-hidden mb-5 border border-zinc-200/80 dark:border-zinc-800 flex flex-col justify-between bg-zinc-950 text-white cursor-pointer group/thumb select-none"
+        className="relative z-10 w-full h-48 sm:h-52 rounded-xl overflow-hidden mb-5 border border-zinc-200/80 dark:border-zinc-800 flex flex-col justify-between bg-zinc-950 text-white cursor-pointer group/thumb select-none"
       >
+        {/* Render Actual Deployed Screenshot when available */}
+        {project.thumbnailUrl && (
+          <div className="relative w-full h-full overflow-hidden">
+            <Image
+              src={project.thumbnailUrl}
+              alt={`${project.title} live screenshot`}
+              fill
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] text-white">
+              <span className="font-mono text-xs flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Live on Vercel
+              </span>
+              <span className="group-hover/thumb:translate-x-0.5 transition-transform flex items-center gap-1 font-semibold text-violet-300 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md border border-white/10">
+                Specs <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* Project 1: Smart Routine (Flutter Mobile Frame) */}
-        {isMobile && (
+        {!project.thumbnailUrl && isMobile && (
           <div className="w-full h-full flex flex-col p-3 bg-gradient-to-b from-zinc-900 to-zinc-950 font-sans">
             {/* Mobile Status Bar */}
             <div className="flex items-center justify-between text-[10px] text-zinc-400 pb-1.5 border-b border-zinc-800">
@@ -134,8 +158,8 @@ export function ProjectCard({ project, onSelect }: ProjectCardProps) {
           </div>
         )}
 
-        {/* Project 2: SkillSphere (Next.js Web SaaS Preview) */}
-        {isSkillSphere && (
+        {/* Project 2: SkillSphere fallback */}
+        {!project.thumbnailUrl && isSkillSphere && (
           <div className="w-full h-full flex flex-col p-3 bg-gradient-to-b from-zinc-900 to-zinc-950 font-sans">
             {/* Browser Header Bar */}
             <div className="flex items-center justify-between pb-1.5 border-b border-zinc-800">
@@ -180,7 +204,7 @@ export function ProjectCard({ project, onSelect }: ProjectCardProps) {
         )}
 
         {/* Project 3: Upcoming / Future Lab */}
-        {isUpcoming && (
+        {!project.thumbnailUrl && isUpcoming && (
           <div className="w-full h-full flex flex-col justify-between p-3.5 bg-gradient-to-b from-zinc-900 to-zinc-950 font-mono">
             <div className="flex items-center justify-between pb-1 border-b border-zinc-800">
               <span className="text-[10px] text-amber-400 flex items-center gap-1">
@@ -254,25 +278,27 @@ export function ProjectCard({ project, onSelect }: ProjectCardProps) {
           </button>
 
           <div className="flex items-center gap-2">
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="View on GitHub"
-              aria-label={`View ${project.title} source code on GitHub`}
-              className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/80 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:text-foreground transition-colors"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View on GitHub"
+                aria-label={`View ${project.title} source code on GitHub`}
+                className="p-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/80 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:text-foreground transition-colors"
+              >
+                <GithubIcon className="w-4 h-4" />
+              </a>
+            )}
 
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Live Demo / Preview"
+                title="Live Demo"
                 aria-label={`View ${project.title} live demo`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-violet-600 hover:bg-violet-500 text-white shadow-sm shadow-violet-500/20 transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-violet-600 hover:bg-violet-500 text-white shadow-sm shadow-violet-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>Live Demo</span>
                 <ExternalLink className="w-3.5 h-3.5" />

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import Image from "next/image";
 import { Project } from "@/data/portfolioData";
 import { X, ExternalLink, CheckCircle2, Layers, Sparkles, Smartphone, Globe } from "lucide-react";
 import { GithubIcon } from "@/components/ui/SocialIcons";
@@ -75,6 +76,19 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           {project.tagline}
         </p>
 
+        {/* Thumbnail Preview */}
+        {project.thumbnailUrl && (
+          <div className="relative w-full h-52 sm:h-64 rounded-xl overflow-hidden mt-4 border border-zinc-200/80 dark:border-zinc-800">
+            <Image
+              src={project.thumbnailUrl}
+              alt={`${project.title} live screenshot`}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 640px"
+            />
+          </div>
+        )}
+
         {/* Detailed Description */}
         <div className="mt-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
           <h4 className="text-sm font-semibold tracking-wide text-zinc-900 dark:text-zinc-200 uppercase mb-2 flex items-center gap-2">
@@ -127,15 +141,17 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
         {/* Action Buttons */}
         <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-end gap-3">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white transition-colors"
-          >
-            <GithubIcon className="w-4 h-4" />
-            View Repository
-          </a>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white transition-colors"
+            >
+              <GithubIcon className="w-4 h-4" />
+              View Repository
+            </a>
+          )}
           {project.liveUrl && (
             <a
               href={project.liveUrl}
@@ -144,7 +160,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-500/25 transition-all"
             >
               <ExternalLink className="w-4 h-4" />
-              Live Demo / Details
+              Live Demo
             </a>
           )}
         </div>

@@ -8,8 +8,9 @@ export interface Project {
   technologies: string[];
   features: string[];
   status: "Completed" | "Active Development" | "Planned";
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
+  thumbnailUrl?: string;
   featured: boolean;
   accentColor: string;
 }
@@ -220,24 +221,23 @@ export const PORTFOLIO_DATA = {
     {
       id: "skillsphere",
       title: "SkillSphere – Online Learning Platform",
-      tagline: "Modern web-based learning hub with structured curricula & secure auth",
+      tagline: "Explore industry-focused courses, discover trending technologies & build skills",
       description:
-        "A modern online learning platform focused on providing an organized digital learning experience.",
+        "An online learning platform designed to help learners explore industry-focused courses, discover trending technologies, and improve their technical skills through structured learning resources.",
       fullDescription:
-        "SkillSphere is a full-stack educational web platform engineered with Next.js App Router, React, and Tailwind CSS. It empowers learners to explore structured coursework, review video materials, monitor completion milestones, and maintain authentication securely using Better Auth with MongoDB persistence.",
+        "SkillSphere is an online learning platform designed to help learners explore industry-focused courses, discover trending technologies, and improve their technical skills through structured learning resources. Built with modern web technologies, the platform delivers curated course catalogs, category navigation, trending releases, practical study techniques, and newsletter engagement.",
       category: "Full-Stack",
-      technologies: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Better Auth"],
+      technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
       features: [
-        "Structured curriculum layout with modular course progression",
-        "Secure authentication and session verification via Better Auth",
-        "Dynamic course catalog with category filters and search",
-        "Interactive student dashboard with progress milestones",
-        "Rich markdown-compatible lesson viewer and content delivery",
-        "Responsive, mobile-optimized dark/light interface",
+        "Popular Courses",
+        "Course Categories",
+        "Trending Course Releases",
+        "Learning Resources and Study Techniques",
+        "Newsletter Subscription",
       ],
-      status: "Active Development",
-      githubUrl: "https://github.com/muhammadrohan3002-lgtm",
-      liveUrl: "https://github.com/muhammadrohan3002-lgtm",
+      status: "Completed",
+      liveUrl: "https://online-learning-platform-five-orpin.vercel.app/",
+      thumbnailUrl: "/projects/skillsphere-preview.png",
       featured: true,
       accentColor: "from-purple-500/20 via-pink-500/10 to-indigo-500/20",
     },
