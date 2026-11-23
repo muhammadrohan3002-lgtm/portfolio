@@ -2,18 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
-import { Menu, X, FileText, ArrowUpRight } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/SocialIcons";
+import { Menu, X, ArrowDownToLine, ArrowUpRight } from "lucide-react";
+import { LinkedinIcon, GithubIcon } from "@/components/ui/SocialIcons";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "#hero" },
+  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
-  { label: "What I Do", href: "#services" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
+  { label: "Experience", href: "#experience" },
+  { label: "Toolkit", href: "#toolkit" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -26,8 +24,8 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = NAV_ITEMS.map((item) => item.href.substring(1));
-      const scrollPosition = window.scrollY + 180;
+      const sections = ["hero", "work", "about", "experience", "toolkit", "contact"];
+      const scrollPosition = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -43,7 +41,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent background scroll when mobile drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -60,31 +57,27 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
         isScrolled
-          ? "glass-nav py-3 shadow-md shadow-black/5"
+          ? "bg-[#f8fafc]/90 dark:bg-[#0b0b0c]/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-white/5 py-3.5"
           : "bg-transparent py-5"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Brand Logo / Personal Identity */}
         <a
           href="#hero"
-          className="group flex items-center gap-2.5 text-xl font-bold tracking-tight text-foreground focus-visible:ring-2 focus-visible:ring-violet-500 rounded-lg p-1"
-          aria-label="Rohan Ali Home"
+          className="group flex items-center gap-2.5 text-base sm:text-lg font-bold tracking-tight text-foreground focus-visible:ring-2 focus-visible:ring-zinc-400 rounded-lg"
+          aria-label="Rohan Ali - Home"
         >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-violet-600" />
-          </span>
-          <span className="font-extrabold tracking-tighter text-xl sm:text-2xl">
-            ROHAN
-            <span className="text-violet-600 dark:text-violet-400">.</span>
+          <span className="h-2 w-2 rounded-full bg-emerald-500 ring-2 ring-emerald-500/20" />
+          <span className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+            {PORTFOLIO_DATA.personal.name}
           </span>
         </a>
 
         {/* Desktop Navigation Links */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-zinc-200/50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-white/10 backdrop-blur-md"
+          className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full bg-zinc-100/80 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-white/5 backdrop-blur-sm"
         >
           {NAV_ITEMS.map((item) => {
             const sectionId = item.href.substring(1);
@@ -94,10 +87,10 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-violet-500",
+                  "px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200",
                   isActive
-                    ? "text-white bg-violet-600 shadow-sm shadow-violet-500/30"
-                    : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                    ? "text-zinc-950 dark:text-white bg-white dark:bg-zinc-800 shadow-xs"
+                    : "text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100"
                 )}
               >
                 {item.label}
@@ -107,17 +100,27 @@ export function Navbar() {
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        <div className="hidden sm:flex items-center gap-3">
           <ThemeToggle />
+
+          <a
+            href={PORTFOLIO_DATA.personal.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Rohan's GitHub"
+            className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors"
+          >
+            <GithubIcon className="w-4 h-4" />
+          </a>
 
           <a
             href={PORTFOLIO_DATA.personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Connect with Rohan on LinkedIn"
-            className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200/80 dark:border-white/10 transition-colors shadow-xs"
+            aria-label="Rohan's LinkedIn"
+            className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition-colors"
           >
-            <LinkedinIcon className="w-4 h-4 text-blue-500" />
+            <LinkedinIcon className="w-4 h-4" />
           </a>
 
           <a
@@ -126,29 +129,29 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Download Rohan Ali CV (PDF)"
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-zinc-900 dark:text-white bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-300/80 dark:border-white/10 transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-violet-500 active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-900 dark:text-zinc-100 bg-zinc-100 hover:bg-zinc-200/80 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-white/10 transition-colors shadow-xs active:scale-95"
           >
-            <FileText className="w-3.5 h-3.5 text-violet-500" />
-            <span>Download CV</span>
+            <ArrowDownToLine className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+            <span>CV</span>
           </a>
 
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-md shadow-violet-500/20 transition-all hover:scale-[1.02] active:scale-95 focus-visible:ring-2 focus-visible:ring-violet-500"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium text-white bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 transition-colors shadow-xs active:scale-95"
           >
-            <span>Let&apos;s Talk</span>
+            <span>Get in Touch</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        {/* Mobile Menu & Theme button */}
+        {/* Mobile Hamburger & Theme toggle */}
         <div className="flex sm:hidden items-center gap-2">
           <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
-            className="p-2.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-violet-500"
+            className="p-2 rounded-lg border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -157,8 +160,8 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-3 top-20 z-50 glass-panel border border-zinc-200/80 dark:border-zinc-800 p-5 shadow-2xl rounded-2xl max-h-[calc(100vh-6rem)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col space-y-1.5">
+        <div className="md:hidden fixed inset-x-3 top-20 z-50 bg-white/95 dark:bg-[#0f0f10]/95 backdrop-blur-xl border border-zinc-200/80 dark:border-zinc-800 p-5 shadow-2xl rounded-2xl max-h-[calc(100vh-6rem)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="flex flex-col space-y-1">
             {NAV_ITEMS.map((item) => {
               const sectionId = item.href.substring(1);
               const isActive = activeSection === sectionId;
@@ -170,28 +173,17 @@ export function Navbar() {
                   className={cn(
                     "px-4 py-3 rounded-xl text-sm font-medium transition-colors flex items-center justify-between min-h-[44px]",
                     isActive
-                      ? "bg-violet-500/10 text-violet-600 dark:text-violet-400 font-semibold"
-                      : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                      ? "bg-zinc-100 dark:bg-zinc-800/80 text-zinc-950 dark:text-white font-semibold"
+                      : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
                   )}
                 >
                   <span>{item.label}</span>
-                  {isActive && <span className="h-1.5 w-1.5 rounded-full bg-violet-600" />}
+                  {isActive && <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />}
                 </a>
               );
             })}
 
-            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-2.5">
-              <a
-                href={PORTFOLIO_DATA.personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 min-h-[44px] transition-colors"
-              >
-                <LinkedinIcon className="w-4 h-4" />
-                <span>Connect on LinkedIn</span>
-              </a>
-
+            <div className="pt-4 mt-2 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-2.5">
               <a
                 href="/cv/Rohan_Ali_CV.pdf"
                 download="Rohan_Ali_CV.pdf"
@@ -200,18 +192,39 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 min-h-[44px]"
               >
-                <FileText className="w-4 h-4 text-violet-500" />
-                <span>Download CV</span>
+                <ArrowDownToLine className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+                <span>Download CV (PDF)</span>
               </a>
 
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-violet-600 text-white min-h-[44px]"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 min-h-[44px]"
               >
-                <span>Let&apos;s Build Something</span>
+                <span>Get in Touch</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
+
+              <div className="flex items-center justify-center gap-4 pt-2">
+                <a
+                  href={PORTFOLIO_DATA.personal.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                  aria-label="GitHub Profile"
+                >
+                  <GithubIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href={PORTFOLIO_DATA.personal.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-blue-500"
+                  aria-label="LinkedIn Profile"
+                >
+                  <LinkedinIcon className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

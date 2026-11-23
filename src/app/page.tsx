@@ -4,11 +4,10 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
-import { WhatIDo } from "@/components/sections/WhatIDo";
-import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
-import { Education } from "@/components/sections/Education";
+import { About } from "@/components/sections/About";
+import { Experience } from "@/components/sections/Experience";
+import { Toolkit } from "@/components/sections/Toolkit";
 import { Contact } from "@/components/sections/Contact";
 
 export default function HomePage() {
@@ -17,18 +16,17 @@ export default function HomePage() {
       {/* Sticky Header / Navbar */}
       <Navbar />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections in Editorial Hierarchy */}
       <main className="flex-1">
         <Hero />
-        <About />
-        <WhatIDo />
-        <Skills />
         <Projects />
-        <Education />
+        <About />
+        <Experience />
+        <Toolkit />
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Minimal Footer */}
       <Footer />
     </>
   );

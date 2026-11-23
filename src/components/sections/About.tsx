@@ -1,130 +1,117 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GraduationCap, Code2, Layers, BookOpen, CheckCircle2 } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/SocialIcons";
+import { ArrowDownToLine, MapPin, GraduationCap, Code2, Target } from "lucide-react";
 
 export function About() {
-  const { personal, about } = PORTFOLIO_DATA;
+  const { about, personal } = PORTFOLIO_DATA;
 
   return (
-    <section id="about" className="py-24 sm:py-32 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Background & Philosophy"
-          title="Engineered with Discipline."
-          highlight="Driven by Curiosity."
-          description="A look into my academic journey in Computer Science & Engineering, technical values, and problem-solving focus."
-        />
+    <section id="about" className="py-24 sm:py-32 border-t border-zinc-200/80 dark:border-white/5 scroll-mt-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Marker */}
+        <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-zinc-500 dark:text-zinc-400 mb-3">
+          <span className="text-emerald-500 font-semibold">02</span>
+          <span>/</span>
+          <span>About</span>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Visual Identity & Key Highlights (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-zinc-200/80 dark:border-white/10 relative overflow-hidden">
-              <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-violet-600/10 blur-3xl pointer-events-none" />
+        {/* Section Heading */}
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 mb-10 sm:mb-12">
+          {about.heading}
+        </h2>
 
-              {/* Profile Card Header with Actual Photograph */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-violet-500/30 shadow-xl bg-zinc-900 shrink-0">
-                  <Image
-                    src={personal.avatarUrl}
-                    alt={`${personal.name} portrait`}
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-foreground">{personal.name}</h3>
-                  <p className="text-xs text-violet-600 dark:text-violet-400 font-medium">
-                    {personal.title}
-                  </p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    {personal.university}
-                  </p>
-                  <a
-                    href={personal.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Connect with Rohan on LinkedIn"
-                    className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/20 transition-colors"
-                  >
-                    <LinkedinIcon className="w-3.5 h-3.5" />
-                    <span>Connect on LinkedIn</span>
-                  </a>
-                </div>
-              </div>
+        {/* Editorial Two-Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Main Narrative Column (7 cols) */}
+          <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <p>
+              I am an undergraduate <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">Computer Science & Engineering student at City University</strong> (64th Batch). I am deeply passionate about building practical, user-focused applications using modern web technologies.
+            </p>
 
-              {/* Core Philosophy Statement */}
-              <div className="p-4 rounded-xl bg-zinc-100/70 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800 mb-6">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-violet-600 dark:text-violet-400 block mb-1">
-                  Core Philosophy
-                </span>
-                <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 italic leading-relaxed">
-                  &ldquo;Great software emerges from disciplined architectural principles and obsessive attention to user experience.&rdquo;
-                </p>
-              </div>
+            <p>
+              My development experience spans modern frontend architectures with React and Next.js, cross-platform mobile apps with Flutter, and robust backend integrations with Node.js and MongoDB. I focus on writing maintainable, clean code that translates complex product requirements into reliable software.
+            </p>
 
-              {/* Quick Academic & Project Signals */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
-                  <GraduationCap className="w-4 h-4 text-violet-500 shrink-0 mt-0.5" />
-                  <span>
-                    B.Sc. in Computer Science & Engineering,{" "}
-                    <strong className="text-foreground">City University</strong>
-                  </span>
-                </div>
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
-                  <Code2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
-                  <span>Hands-on experience in full-stack web and mobile apps</span>
-                </div>
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
-                  <Layers className="w-4 h-4 text-cyan-500 shrink-0 mt-0.5" />
-                  <span>Emphasis on clean architecture, REST APIs, and databases</span>
-                </div>
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
-                  <BookOpen className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <span>Continuous learning with modern web ecosystems & AI tooling</span>
-                </div>
-              </div>
+            <p>
+              Alongside software engineering, I am actively engaged in <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">Competitive Programming using C++</strong>. I continuously work on strengthening my foundation in <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">Data Structures and Algorithms</strong>, practicing analytical problem-solving under strict time and space constraints.
+            </p>
+
+            <p>
+              My long-term goal is to grow into a skilled <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">Software Engineer</strong>, designing and contributing to high-impact systems that deliver real-world value.
+            </p>
+
+            <div className="pt-4 flex items-center gap-4">
+              <a
+                href={personal.resumeDownloadUrl}
+                download="Rohan_Ali_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-white bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200 transition-colors shadow-xs"
+              >
+                <ArrowDownToLine className="w-3.5 h-3.5" />
+                <span>Download Resume (PDF)</span>
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Narrative Story & 4 Strength Pillars (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-300 leading-relaxed space-y-4">
-              <p className="text-base sm:text-lg font-medium text-zinc-800 dark:text-zinc-200">
-                {personal.bioLong}
-              </p>
-              <p className="text-sm sm:text-base leading-relaxed">
-                As a Computer Science & Engineering undergraduate, I treat software engineering as both an intellectual discipline and a craft. I thrive on translating abstract theoretical concepts — such as object-oriented system design, relational and document data modeling, and algorithmic complexity — into practical, tangible software that users enjoy navigating.
-              </p>
-              <p className="text-sm sm:text-base leading-relaxed">
-                My development experience is grounded in building end-to-end applications through rigorous academic coursework and self-initiated projects. Whether designing responsive client interfaces with Next.js and Tailwind CSS, structuring cross-platform mobile experiences with Flutter, or building persistent REST APIs on Node.js and MongoDB, I prioritize maintainability and thoughtful UX.
-              </p>
-            </div>
+          {/* Facts / Highlights Sidebar (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-800 p-6 space-y-5">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 pb-3 border-b border-zinc-200 dark:border-zinc-800">
+                Key Background Details
+              </h3>
 
-            {/* 4 Pillars Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              {about.coreStrengths.map((strength, index) => (
-                <div
-                  key={index}
-                  className="p-4 rounded-xl glass-panel border border-zinc-200/60 dark:border-white/[0.06] hover:border-violet-500/30 transition-colors"
-                >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-violet-500 shrink-0" />
-                    <h4 className="font-semibold text-sm text-foreground">
-                      {strength.title}
-                    </h4>
+              <div className="space-y-4 text-xs sm:text-sm">
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+                  <div>
+                    <span className="font-medium text-zinc-900 dark:text-zinc-100 block">
+                      City University
+                    </span>
+                    <span className="text-zinc-500 dark:text-zinc-400 text-xs">
+                      B.Sc. in Computer Science & Engineering • 64th Batch
+                    </span>
                   </div>
-                  <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    {strength.desc}
-                  </p>
                 </div>
-              ))}
+
+                <div className="flex items-start gap-3">
+                  <Code2 className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+                  <div>
+                    <span className="font-medium text-zinc-900 dark:text-zinc-100 block">
+                      Core Discipline
+                    </span>
+                    <span className="text-zinc-500 dark:text-zinc-400 text-xs">
+                      Full-Stack Web Development & Cross-Platform Apps
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Target className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+                  <div>
+                    <span className="font-medium text-zinc-900 dark:text-zinc-100 block">
+                      Problem Solving
+                    </span>
+                    <span className="text-zinc-500 dark:text-zinc-400 text-xs">
+                      C++ Competitive Programming • Data Structures & Algorithms
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+                  <div>
+                    <span className="font-medium text-zinc-900 dark:text-zinc-100 block">
+                      Location
+                    </span>
+                    <span className="text-zinc-500 dark:text-zinc-400 text-xs">
+                      Savar, Dhaka, Bangladesh (UTC+6)
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

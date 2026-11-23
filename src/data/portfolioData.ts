@@ -1,18 +1,38 @@
 export interface Project {
   id: string;
   title: string;
-  tagline: string;
+  year: string;
+  category: string;
+  summary: string;
   description: string;
   fullDescription: string;
-  category: "Mobile" | "Full-Stack" | "Frontend" | "Upcoming";
+  tagline?: string;
   technologies: string[];
   features: string[];
   status: "Completed" | "Active Development" | "Planned";
-  githubUrl?: string;
   liveUrl?: string;
-  thumbnailUrl?: string;
+  githubUrl?: string;
+  thumbnailUrl: string;
   featured: boolean;
-  accentColor: string;
+  accentColor?: string;
+}
+
+export interface LearningMilestone {
+  id: string;
+  title: string;
+  period?: string;
+  tagline: string;
+  description: string;
+  focusAreas: string[];
+  icon: string;
+}
+
+export interface ToolkitGroup {
+  category: string;
+  skills: {
+    name: string;
+    description?: string;
+  }[];
 }
 
 export interface SkillCategory {
@@ -50,96 +70,266 @@ export interface ServiceItem {
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Rohan Ali",
-    brandName: "ROHAN.",
-    title: "Full-Stack Developer | CSE Student",
-    headline: "Building Digital Experiences That Make an Impact.",
-    department: "Computer Science & Engineering",
-    university: "City University",
+    brandName: "Rohan Ali",
+    title: "Computer Science Student & Aspiring Full-Stack Developer",
+    headline: "Hi, I'm Rohan Ali.",
+    intro:
+      "I build web applications, explore new technologies, and continuously improve my problem-solving skills through programming.",
     bioShort:
       "I'm Rohan Ali, a CSE student and aspiring Full-Stack Developer passionate about building modern web and mobile applications.",
     bioLong:
       "I build modern, responsive, and user-focused web and mobile applications. I enjoy transforming ideas into practical digital solutions using modern technologies. With a strong foundation in Computer Science & Engineering at City University, I combine academic engineering rigor with hands-on development across frontend, backend, databases, and cross-platform mobile frameworks.",
     careerGoal:
       "Seeking software development opportunities, internships, and collaboration with developers and technology teams.",
-    availableForOpportunities: true,
+    department: "Department of Computer Science & Engineering",
+    university: "City University",
     location: "Savar, Dhaka, Bangladesh",
-    avatarUrl: "/rohan-profile.jpg",
     email: "muhammadrohan3002@gmail.com",
-    linkedin: "https://www.linkedin.com/in/muhammad-rohan-094494373/",
     github: "https://github.com/muhammadrohan3002-lgtm",
+    linkedin: "https://www.linkedin.com/in/muhammad-rohan-094494373/",
     vercel: "https://vercel.com/muhammadrohan3002-lgtms-projects",
+    avatarUrl: "/rohan-profile.jpg",
     resumeDownloadUrl: "/cv/Rohan_Ali_CV.pdf",
+    availableForOpportunities: true,
   },
 
   about: {
-    academicSummary:
-      "Currently pursuing my Bachelor's degree in Computer Science & Engineering at City University, cultivating a strong grounding in algorithms, system design, and software engineering practices.",
-    developmentPhilosophy:
-      "I believe great software emerges at the intersection of robust architectural principles and obsessive attention to user experience. Rather than settling for surface-level implementations, I focus on clean code, maintainability, and real-world performance.",
-    coreStrengths: [
+    heading: "A little about me.",
+    narrative: [
+      "I am an undergraduate Computer Science & Engineering student at City University with a dedicated passion for building practical, robust applications using modern web technologies.",
+      "Alongside web development, I am active in Competitive Programming, solving algorithmic challenges in C++ and continuously deepening my understanding of Data Structures and Algorithms.",
+      "My long-term goal is to grow into a skilled Software Engineer, designing scalable systems, writing clean and maintainable code, and contributing to high-impact products.",
+    ],
+    highlights: [
       {
-        title: "CSE Academic Foundation",
-        desc: "Structured problem-solving backed by core computer science fundamentals and disciplined software engineering methodologies.",
+        label: "University",
+        value: "City University (CSE, 64th Batch)",
       },
       {
-        title: "Hands-on Project Experience",
-        desc: "Building practical web and cross-platform mobile applications through rigorous academic and self-directed initiatives.",
+        label: "Primary Focus",
+        value: "Full-Stack Web Development & Modern UI Engineering",
       },
       {
-        title: "Full-Stack & Mobile Breadth",
-        desc: "Comfortable navigating the entire stack — from pixel-perfect UI with React & Tailwind to Flutter mobile apps, RESTful APIs, and MongoDB.",
+        label: "Problem Solving",
+        value: "C++ Competitive Programming & Core DSA",
       },
       {
-        title: "Continuous Learning Mindset",
-        desc: "Actively experimenting with modern tooling, AI-assisted development workflows, and modern web architectures.",
+        label: "Location",
+        value: "Savar, Dhaka, Bangladesh",
       },
     ],
   },
 
-  services: [
-    {
-      id: "frontend",
-      title: "Frontend Development",
-      description:
-        "Crafting responsive, accessible, and high-performance interfaces with modern component architectures and micro-interactions.",
-      technologies: ["React.js", "Next.js", "Tailwind CSS", "JavaScript (ES6+)", "HTML5/CSS3"],
-      capabilities: [
-        "Responsive, mobile-first web applications",
-        "Modern component-driven UI architecture",
-        "Interactive states and accessible UX patterns",
-        "Performance optimization and Core Web Vitals",
-      ],
-      icon: "Layout",
-    },
+  learningJourney: [
     {
       id: "fullstack",
       title: "Full-Stack Web Development",
+      tagline: "Modern web architectures & reactive user interfaces",
       description:
-        "Connecting intuitive client interfaces with robust server architectures, RESTful APIs, and clean data modeling.",
-      technologies: ["Next.js App Router", "Node.js Fundamentals", "REST APIs", "MongoDB", "Better Auth"],
-      capabilities: [
-        "End-to-end full-stack web applications",
-        "REST API development and CRUD operations",
-        "Database modeling with MongoDB & Mongoose",
-        "Authentication and secure session handling",
-      ],
-      icon: "Server",
+        "Building modern responsive web applications using React, Next.js, Tailwind CSS, and REST APIs. Focusing on component-driven design, accessibility, and smooth user interactions.",
+      focusAreas: ["React", "Next.js", "Tailwind CSS", "REST APIs", "Modern State Management"],
+      icon: "Layers",
     },
     {
-      id: "mobile",
-      title: "Cross-Platform Mobile App Development",
+      id: "personal-projects",
+      title: "Personal Software Projects",
+      tagline: "End-to-end practical application engineering",
       description:
-        "Engineering cross-platform mobile applications that deliver native performance, clean state management, and unified UX.",
-      technologies: ["Flutter", "Dart", "REST APIs", "State Management", "Mobile UI/UX"],
-      capabilities: [
-        "Cross-platform iOS & Android mobile development",
-        "Clean Flutter widget hierarchies and reactive state",
-        "Seamless REST API backend integration",
-        "Offline caching and persistent local storage",
-      ],
-      icon: "Smartphone",
+        "Developing real-world applications including academic management tools and modern web platforms. Engineering complete solutions from UI design to data persistence.",
+      focusAreas: ["SkillSphere EdTech", "Keen Keepers", "Smart Routine App", "AI Tools Directory"],
+      icon: "Code2",
     },
-  ] as ServiceItem[],
+    {
+      id: "competitive-programming",
+      title: "Competitive Programming",
+      tagline: "Rigorous problem solving with C++",
+      description:
+        "Regularly practicing algorithmic problem solving using C++ to build analytical and computational thinking. Competing on programming platforms to strengthen efficiency under constraints.",
+      focusAreas: ["C++ Standard Library (STL)", "Time & Space Complexity", "Greedy & Math", "Modular Code"],
+      icon: "Terminal",
+    },
+    {
+      id: "dsa",
+      title: "Data Structures and Algorithms",
+      tagline: "Solid algorithmic principles & engineering fundamentals",
+      description:
+        "Deepening understanding of arrays, trees, graphs, sorting, and dynamic programming through structured academic coursework and hands-on implementation.",
+      focusAreas: ["Arrays & Hash Maps", "Binary Trees & BST", "Graph Traversals", "Dynamic Programming"],
+      icon: "Cpu",
+    },
+  ] as LearningMilestone[],
+
+  toolkit: [
+    {
+      category: "Frontend",
+      skills: [
+        { name: "HTML" },
+        { name: "CSS" },
+        { name: "JavaScript" },
+        { name: "React" },
+        { name: "Next.js" },
+        { name: "Tailwind CSS" },
+      ],
+    },
+    {
+      category: "Backend",
+      skills: [
+        { name: "Node.js" },
+        { name: "Express.js" },
+        { name: "MongoDB" },
+        { name: "REST APIs" },
+      ],
+    },
+    {
+      category: "Programming Languages",
+      skills: [
+        { name: "C++" },
+        { name: "Dart" },
+      ],
+    },
+    {
+      category: "Tools & Environments",
+      skills: [
+        { name: "Git" },
+        { name: "GitHub" },
+        { name: "VS Code" },
+      ],
+    },
+  ] as ToolkitGroup[],
+
+  projects: [
+    {
+      id: "keen-keepers",
+      title: "Keen Keepers",
+      year: "2024",
+      category: "Frontend / Productivity Web App",
+      summary:
+        "A personal record-keeping and task management web application with interactive analytics, visual data charts, and dynamic status tracking.",
+      description:
+        "A personal record-keeping and task management web application with interactive analytics, visual data charts, and dynamic status tracking.",
+      tagline: "Personal record-keeping & productivity tracking suite",
+      fullDescription:
+        "Keen Keepers is a productivity and personal tracking web application designed to help users organize, monitor, and visualize daily records, habits, and tasks. Built with React and Tailwind CSS with DaisyUI components, it incorporates Recharts for intuitive progress visualization and browser-native LocalStorage for rapid persistence.",
+      technologies: ["React", "Tailwind CSS", "DaisyUI", "Recharts", "LocalStorage"],
+      features: [
+        "Interactive record and task management with real-time state updates",
+        "Visual analytics and graphical progress reporting via Recharts",
+        "Responsive, modern user interface built with Tailwind CSS & DaisyUI",
+        "Persistent local client storage with zero setup friction",
+      ],
+      status: "Completed",
+      liveUrl: "https://keen-keepers-two.vercel.app",
+      githubUrl: "https://github.com/muhammadrohan3002-lgtm/keen-keepers",
+      thumbnailUrl: "/projects/keen-keepers-preview.png",
+      featured: true,
+      accentColor: "from-blue-500/20 via-indigo-500/10 to-violet-500/20",
+    },
+    {
+      id: "ai-tools",
+      title: "AI Tools",
+      year: "2024",
+      category: "Frontend / AI Directory",
+      summary:
+        "An interactive directory and discovery portal for modern AI tools and platforms, featuring categorized exploration and direct access.",
+      description:
+        "An interactive directory and discovery portal for modern AI tools and platforms, featuring categorized exploration and direct access.",
+      tagline: "Curated directory & discovery portal for modern artificial intelligence tools",
+      fullDescription:
+        "AI Tools is a curated discovery platform that allows developers, designers, and creators to discover the best artificial intelligence tools across categories like generation, text, coding, and productivity. Built using React and Vite with Tailwind CSS, it offers snappy client-side search and clean card layouts.",
+      technologies: ["React", "Tailwind CSS", "DaisyUI", "Vite"],
+      features: [
+        "Categorized exploration across leading generative and developer AI tools",
+        "Fast client-side search and filtering",
+        "Responsive layout optimized for mobile and desktop screens",
+        "Direct link access with clean external navigation",
+      ],
+      status: "Completed",
+      liveUrl: "https://ai-tools-one-navy.vercel.app",
+      githubUrl: "https://github.com/muhammadrohan3002-lgtm/Ai-tools",
+      thumbnailUrl: "/projects/ai-tools-preview.png",
+      featured: true,
+      accentColor: "from-cyan-500/20 via-blue-500/10 to-teal-500/20",
+    },
+    {
+      id: "skillsphere",
+      title: "SkillSphere – Online Learning Platform",
+      year: "2024",
+      category: "Full-Stack / EdTech",
+      summary:
+        "An online learning platform designed to help learners explore industry-focused courses, discover trending technologies, and improve technical skills.",
+      description:
+        "An online learning platform designed to help learners explore industry-focused courses, discover trending technologies, and improve technical skills.",
+      tagline: "Explore industry-focused courses, discover trending technologies & build skills",
+      fullDescription:
+        "SkillSphere is a modern online learning portal built with Next.js, React, and Tailwind CSS. The platform enables students to explore curated course catalogs, browse trending technical subjects, learn study techniques, and subscribe to tech newsletters, all delivered through a polished, typography-rich user interface.",
+      technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+      features: [
+        "Curated popular courses catalog and categorized exploration",
+        "Trending course release highlights and tech skill paths",
+        "Structured learning resources and effective study techniques",
+        "Newsletter subscription section with interactive forms",
+        "Responsive, high-performance architecture built on Next.js",
+      ],
+      status: "Completed",
+      liveUrl: "https://online-learning-platform-five-orpin.vercel.app/",
+      githubUrl: "https://github.com/muhammadrohan3002-lgtm/Online-Learning-Platform",
+      thumbnailUrl: "/projects/skillsphere-preview.png",
+      featured: true,
+      accentColor: "from-purple-500/20 via-pink-500/10 to-indigo-500/20",
+    },
+    {
+      id: "smart-routine",
+      title: "Smart Routine & Management App",
+      year: "2024",
+      category: "Mobile & Web / Student Productivity",
+      summary:
+        "A cross-platform academic productivity application designed to help students manage class routines, tasks, exams, attendance, and study sessions.",
+      description:
+        "A cross-platform academic productivity application designed to help students manage class routines, tasks, exams, attendance, and study sessions.",
+      tagline: "Cross-platform academic productivity & routine tracking suite for students",
+      fullDescription:
+        "Smart Routine & Management App solves day-to-day academic scheduling challenges for university students. Engineered with Flutter and Dart on the mobile frontend and powered by Next.js and MongoDB REST APIs, the application provides an integrated digital cockpit for tracking timetable schedules, attendance thresholds, and upcoming academic deadlines.",
+      technologies: ["Flutter", "Dart", "Riverpod", "Next.js", "MongoDB"],
+      features: [
+        "Dynamic class routine scheduler with time-slot alerts",
+        "Exam and deadline tracker with priority tagging",
+        "Attendance percentage calculator with warning thresholds",
+        "Cross-platform responsive design for mobile and web screens",
+        "MongoDB REST API integration for persistent cloud synchronization",
+      ],
+      status: "Active Development",
+      liveUrl: "https://online-class-routine.vercel.app",
+      githubUrl: "https://github.com/muhammadrohan3002-lgtm/online-class-routine",
+      thumbnailUrl: "/projects/smart-routine-preview.png",
+      featured: true,
+      accentColor: "from-emerald-500/20 via-teal-500/10 to-cyan-500/20",
+    },
+  ] as Project[],
+
+  education: {
+    institution: "City University",
+    department: "Department of Computer Science & Engineering (CSE)",
+    degree: "Bachelor of Science in Computer Science and Engineering",
+    batch: "64th Batch (CSE)",
+    period: "2023 – Present",
+    location: "Savar, Dhaka, Bangladesh",
+    description:
+      "Undertaking undergraduate study covering fundamental computer science theory, algorithms, software engineering principles, database architectures, and hands-on system implementation.",
+    relevantCoursework: [
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming (OOP)",
+      "Database Management Systems (DBMS)",
+      "Software Engineering & Design",
+      "Web Technologies & Applications",
+      "Computer Networks & Data Communication",
+      "Operating Systems Concepts",
+    ],
+    keyHighlights: [
+      "Consistent academic engagement in core engineering coursework",
+      "Active participant in technical problem-solving and programming labs",
+      "Building practical software solutions alongside academic theory",
+    ],
+  } as EducationDetail,
 
   skills: [
     {
@@ -186,106 +376,36 @@ export const PORTFOLIO_DATA = {
         { name: "Git", levelDescription: "Version control, branching & commit hygiene", icon: "GitBranch" },
         { name: "GitHub", levelDescription: "Repository collaboration, PRs & code hosting", icon: "Github" },
         { name: "VS Code", levelDescription: "Optimized developer workflow & extensions", icon: "Laptop" },
-        { name: "Google Antigravity", levelDescription: "Agentic AI development & modern CLI tooling", icon: "Zap" },
-        { name: "AI-Assisted Dev Tools", levelDescription: "Accelerated development, testing & debugging", icon: "Bot" },
       ],
     },
   ] as SkillCategory[],
 
-  projects: [
+  services: [
     {
-      id: "smart-routine",
-      title: "Smart Routine & Management App",
-      tagline: "Cross-platform academic productivity & routine tracking suite for students",
+      id: "frontend",
+      title: "Frontend Development",
       description:
-        "A cross-platform academic productivity application designed to help students manage their class routines, tasks, exams, attendance, and study sessions.",
-      fullDescription:
-        "Smart Routine & Management App is designed specifically to eliminate academic friction for university students. Built with Flutter and Dart on the mobile frontend and backed by Next.js and MongoDB REST APIs, the application provides an integrated digital cockpit for tracking daily class timetables, upcoming exam deadlines, attendance thresholds, and dedicated study intervals.",
-      category: "Mobile",
-      technologies: ["Flutter", "Dart", "Next.js", "MongoDB", "REST APIs"],
-      features: [
-        "Secure user authentication & student profile management",
-        "Dynamic class routine management with time-slot notifications",
-        "Task and upcoming exam tracking with priority tags",
-        "Attendance percentage calculator with warning thresholds",
-        "Integrated study session tracking with focus timer",
-        "Interactive dashboard displaying overall academic progress",
-        "Cross-platform responsive mobile experience for Android and iOS",
+        "Crafting responsive, accessible, and high-performance interfaces with modern component architectures.",
+      technologies: ["React.js", "Next.js", "Tailwind CSS", "JavaScript (ES6+)", "HTML5/CSS3"],
+      capabilities: [
+        "Responsive, mobile-first web applications",
+        "Modern component-driven UI architecture",
+        "Interactive states and accessible UX patterns",
       ],
-      status: "Active Development",
-      githubUrl: "https://github.com/muhammadrohan3002-lgtm",
-      liveUrl: "https://github.com/muhammadrohan3002-lgtm",
-      featured: true,
-      accentColor: "from-blue-500/20 via-indigo-500/10 to-violet-500/20",
+      icon: "Layout",
     },
     {
-      id: "skillsphere",
-      title: "SkillSphere – Online Learning Platform",
-      tagline: "Explore industry-focused courses, discover trending technologies & build skills",
+      id: "fullstack",
+      title: "Full-Stack Web Development",
       description:
-        "An online learning platform designed to help learners explore industry-focused courses, discover trending technologies, and improve their technical skills through structured learning resources.",
-      fullDescription:
-        "SkillSphere is an online learning platform designed to help learners explore industry-focused courses, discover trending technologies, and improve their technical skills through structured learning resources. Built with modern web technologies, the platform delivers curated course catalogs, category navigation, trending releases, practical study techniques, and newsletter engagement.",
-      category: "Full-Stack",
-      technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
-      features: [
-        "Popular Courses",
-        "Course Categories",
-        "Trending Course Releases",
-        "Learning Resources and Study Techniques",
-        "Newsletter Subscription",
+        "Connecting intuitive client interfaces with robust server architectures, RESTful APIs, and clean data modeling.",
+      technologies: ["Next.js App Router", "Node.js Fundamentals", "REST APIs", "MongoDB"],
+      capabilities: [
+        "End-to-end full-stack web applications",
+        "REST API development and CRUD operations",
+        "Database modeling with MongoDB & Mongoose",
       ],
-      status: "Completed",
-      liveUrl: "https://online-learning-platform-five-orpin.vercel.app/",
-      thumbnailUrl: "/projects/skillsphere-preview.png",
-      featured: true,
-      accentColor: "from-purple-500/20 via-pink-500/10 to-indigo-500/20",
+      icon: "Server",
     },
-    {
-      id: "upcoming-lab",
-      title: "Next-Gen Developer Productivity Tool",
-      tagline: "Exploring modern AI workflows & distributed full-stack architecture",
-      description:
-        "An upcoming project focusing on modern developer tooling, automated workflows, and high-performance reactive UI.",
-      fullDescription:
-        "This project is currently in the architectural and prototyping phase. It focuses on combining full-stack TypeScript capabilities with real-time state synchronization to deliver an ultra-responsive developer experience.",
-      category: "Upcoming",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "REST APIs"],
-      features: [
-        "Real-time state synchronization",
-        "High-performance client UI with optimistic updates",
-        "Modular microservice-ready backend APIs",
-        "Comprehensive automated testing coverage",
-      ],
-      status: "Planned",
-      githubUrl: "https://github.com/muhammadrohan3002-lgtm",
-      featured: false,
-      accentColor: "from-cyan-500/20 via-blue-500/10 to-teal-500/20",
-    },
-  ] as Project[],
-
-  education: {
-    institution: "City University",
-    department: "Department of Computer Science & Engineering (CSE)",
-    degree: "Bachelor of Science in Computer Science and Engineering",
-    batch: "64th Batch (CSE)",
-    period: "2023 – Present",
-    location: "Savar, Dhaka, Bangladesh",
-    description:
-      "Undertaking rigorous undergraduate study covering fundamental computer science theory, algorithms, software engineering principles, database architectures, and hands-on system implementation.",
-    relevantCoursework: [
-      "Data Structures & Algorithms",
-      "Object-Oriented Programming (OOP)",
-      "Database Management Systems (DBMS)",
-      "Software Engineering & Design",
-      "Web Technologies & Applications",
-      "Computer Networks & Data Communication",
-      "Operating Systems Concepts",
-    ],
-    keyHighlights: [
-      "Consistent academic engagement in core engineering coursework",
-      "Active participant in technical problem-solving and programming labs",
-      "Building practical software solutions alongside academic theory",
-    ],
-  } as EducationDetail,
+  ] as ServiceItem[],
 };
