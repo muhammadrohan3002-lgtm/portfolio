@@ -293,7 +293,7 @@ export function Contact() {
                       id="name"
                       type="text"
                       required
-                      placeholder="e.g. Alex Johnson"
+                      placeholder="Enter your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
@@ -312,7 +312,7 @@ export function Contact() {
                       id="email"
                       type="email"
                       required
-                      placeholder="alex@example.com"
+                      placeholder="Enter your email address"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
@@ -332,7 +332,7 @@ export function Contact() {
                     id="subject"
                     type="text"
                     required
-                    placeholder="Internship opportunity / Project collaboration"
+                    placeholder="Enter subject (e.g. Internship opportunity, project collaboration)"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400"
@@ -351,7 +351,7 @@ export function Contact() {
                     id="message"
                     rows={4}
                     required
-                    placeholder="Tell me about your project, team, or opportunity..."
+                    placeholder="Write your message here..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl bg-white/70 dark:bg-zinc-900/70 border border-zinc-300/80 dark:border-zinc-800 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all placeholder:text-zinc-400 resize-none"
